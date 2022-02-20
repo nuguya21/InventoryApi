@@ -49,6 +49,12 @@ public class InventoryApiManager {
         return null;
     }
 
+    public void update(InventoryApi api) {
+        if (api != null) {
+            this.inventoryApiMap.put(api.getName(), api);
+        }
+    }
+
     public InventoryApi getOpeningInventoryApi(@NotNull Player player) {
         if (this.players.containsKey(player.getUniqueId())) {
             return this.players.get(player.getUniqueId());

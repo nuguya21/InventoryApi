@@ -1,7 +1,7 @@
 name: InventoryApi
 version: '${project.version}'
 main: com.github.nuguya21.inventoryapi.InventoryApiPlugin
-api-version: 1.16
+api-version: 1.18
 authors: [ nuguya21 ]
 commands:
   test:

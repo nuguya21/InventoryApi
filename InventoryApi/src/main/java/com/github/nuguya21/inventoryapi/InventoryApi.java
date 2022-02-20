@@ -99,11 +99,14 @@ public class InventoryApi {
     }
 
     public void removeInventoryItem(@NotNull UUID uuid, int slot) {
-        InventoryItem[] contents = getContents(uuid);
-        contents[slot] = null;
-        this.contents.put(uuid, contents);
+        setInventoryItem(uuid, slot, null);
     }
 
+    /*
+    if the player open the inventory through this method,
+    the player can't use events[click, drag, close].
+    This can be solved by method on InventoryApiManager.
+     */
     public void open(@NotNull Player player) {
         InventoryApiOpener opener = new InventoryApiOpener(this);
         opener.open(player);
@@ -141,5 +144,9 @@ public class InventoryApi {
 
     public void create() {
         InventoryApiPlugin.getInventoryApiManager().addInventoryApi(this);
+    }
+
+    public void update() {
+        InventoryApiPlugin.getInventoryApiManager().update(this);
     }
 }
