@@ -40,7 +40,7 @@ api.setDragEventConsumer(event -> {
 InventoryApiPlugin.getInventoryApiManager.open("example", player);
 InventoryApiPlugin.getInventoryApiManager.close(player);
 ```
-- 사용 예시(java 16)
+- 사용 예시(java 17)
   - 물양동이를 클릭했을 때 플레이어의 위치에 물 생성하는 인벤토리
 ```java
 InventoryApi api = new InventoryApi("example", 9, "물 생성");
