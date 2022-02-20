@@ -14,6 +14,7 @@ api.create;
   - ```InventoryItem``` 을 선언합니다.
   - ```InventoryItem``` 을 선언할 때 ```ItemStack```은 아이템을 설정하고 ```Consumer```은 해당 아이템을 클릭했을 때 실행되는 구문을 람다식으로 작성합니다.
   - 추가할 ```InventoryApi```의 ```.setInventoryItem``` 메소드를 통해 슬롯과 플레이어의 ```UUID```와 함께 추가합니다.
+  - ```InventoryApi```는 플레이어 각자의 인벤토리가 나누어져 있기 때문에 플레이어에게 열 때 추가하는 것을 추천합니다
   - 예시 코드:
 ```java
 InventoryItem item = new InventoryItem(itemStack, event -> {
@@ -43,6 +44,9 @@ InventoryApiPlugin.getInventoryApiManager.close(player);
   - 물양동이를 클릭했을 때 플레이어의 위치에 물 생성하는 인벤토리
 ```java
 InventoryApi api = new InventoryApi("example", 9, "물 생성");
+//onEnable 추천
+api.create;
+//플레이어에게 열 때(명령어 등)
 ItemStack stack = new ItemStack(Material.WATER_BACKET);
 InventoryItem item = new InventoryItem(stack, event -> {
   if (event.getWhoClicked() instanceof Player player) {
@@ -51,6 +55,7 @@ InventoryItem item = new InventoryItem(stack, event -> {
     location.getBlock().setType(Material.WATER);
   }
 });
-api.setInventoryItem(4, item);
-api.create;
+api.setInventoryItem(player.getUniqueId(), 4, item);
+api.update();
+InventoryApiPlugin.getInventoryApiManager.open("example", player);
 ```
