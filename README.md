@@ -13,13 +13,13 @@ api.create;
 - 아이템 추가
   - ```InventoryItem``` 을 선언합니다.
   - ```InventoryItem``` 을 선언할 때 ```ItemStack```은 아이템을 설정하고 ```Consumer```은 해당 아이템을 클릭했을 때 실행되는 구문을 람다식으로 작성합니다.
-  - 추가할 ```InventoryApi```의 ```.setInventoryItem``` 메소드를 통해 슬롯과 함께 추가합니다.
+  - 추가할 ```InventoryApi```의 ```.setInventoryItem``` 메소드를 통해 슬롯과 플레이어의 ```UUID```와 함께 추가합니다.
   - 예시 코드:
 ```java
 InventoryItem item = new InventoryItem(itemStack, event -> {
   //클릭했을 때 실행될 구문
 });
-api.setInventoryItem(slot, item);
+api.setInventoryItem(uuid, slot, item);
 ```
 - 아이템을 클릭하지 않았을 때, ```InventoryDragEvent```가 발생했을 때 실행
   - 실행할 ```InventoryApi```의 ```.setClickAirEventConsumer```와 ```.setDragEventConsumer```을 통해 실행되는 구문을 람다식으로 작성합니다.
